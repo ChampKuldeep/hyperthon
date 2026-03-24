@@ -10,22 +10,47 @@
       font-family: Arial;
       text-align: center;
     }
-    h2 {
-      margin-top: 20px;
+
+    #overlay {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 10;
     }
+
     video {
       width: 100%;
-      height: auto;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
     }
   </style>
 </head>
 
 <body>
-  <h2>📥 Loading Problem Statement...</h2>
 
-  <video autoplay>
-    <source src="video.mp4" type="video/mp4">
-  </video>
+<div id="overlay">📄 Tap to open Problem Statement</div>
+
+<video id="vid">
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<script>
+  const overlay = document.getElementById("overlay");
+  const video = document.getElementById("vid");
+
+  overlay.addEventListener("click", () => {
+    overlay.style.display = "none";
+    video.style.display = "block";
+    video.play();
+  });
+</script>
 
 </body>
 </html>
